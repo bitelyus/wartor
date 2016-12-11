@@ -24,20 +24,19 @@ public class PanelOceano extends JPanel {
     private final List<Pez> mipezera = new ArrayList<Pez>();
     private final List<Boqueron> mipezerab = new ArrayList<Boqueron>();
     private final List<Burbuja> mipezerabb = new ArrayList<Burbuja>();
-    private final List<Choke> mischokes = new ArrayList<Choke>();
 
     // ZONA DE CONSTRUCTORES
     public PanelOceano() {
 
-        this.setBounds(0, 0, 500, 500);    // TAMAÑO DEL PANEL
+        this.setBounds(0, 0, 500, 500); // TAMAÑO DEL PANEL
 
-        for (int i = 0; i < 50; i++) {          // LE AÑADIMO 20 PEZCES
+        for (int i = 0; i < 40; i++) {  // LE AÑADIMOS UN PUÑADO DE PECES
             Pez mipez = new Pez(this);  // CREAMOS UN PEZ CON DATOS ALEATORIOS
             new Thread(mipez).start();  // ARRANCAMOS EL PEZ
             mipezera.add(mipez);        // LO AÑADIMOS A LA PEZERA DE NORMALES
         }
 
-        for (int i = 0; i < 10; i++) {         // LE AÑADIMOS 5 TIBURONES
+        for (int i = 0; i < 8; i++) {         // LE AÑADIMOS OTRO TANTO DE TIBURONES
             Boqueron mitibuboqueron = new Boqueron(this);
             new Thread(mitibuboqueron).start(); // ARRANCAMOS EL TIBUBOQUERON
             mipezerab.add(mitibuboqueron);      // LO AÑADIMOS A LA PEZERA DE TIBUBOQUERONES
@@ -73,8 +72,9 @@ public class PanelOceano extends JPanel {
             ex.printStackTrace();
         }
 
-        for (int i = 0; i < 50; i++) {
-            g.drawImage(img, mipezerabb.get(i).getX(), mipezerabb.get(i).getY(), this);
+        
+        for (Burbuja b : mipezerabb) {
+            g.drawImage(img, b.getX(), b.getY(), this);
         }
 
         try {
@@ -110,8 +110,8 @@ public class PanelOceano extends JPanel {
         // COMPROBAR POSICIÓN DE LOS PECES!!. 
         // SI ESTAN EN LA MISMA X E Y TIBURON Y PEZ > MUERE PECECITO
         ArrayList<Pez> pecesmuertos = new ArrayList();
-        for (Pez pez : mipezera) {
-            for (Boqueron tiburon : mipezerab) {
+        for (Boqueron tiburon : mipezerab) {
+            for (Pez pez : mipezera) {
                 //System.out.println(tiburon.calcularDistanciaDesde(pez));
                 if (tiburon.calcularDistanciaDesde(pez)<tiburon.getRadio()+5) { // EL RADIO DEL TIBURON Y 5 DEL PEZ
                     System.out.println("HA CHOCADO UN TIBUBOQUERON CON UN PEZ!!");
