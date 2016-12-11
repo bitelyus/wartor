@@ -10,7 +10,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class VentanaWarTor extends JFrame {
     
-    PanelBosque pb = new PanelBosque();
+    PanelOceano pb = new PanelOceano();
 
     public VentanaWarTor() {
         super("WAR TOR");   // LE PONEMOS NOMBRE A LA VENTANA

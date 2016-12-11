@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  *
  * @author bitelyus @ www.miguelkiko.com
  */
-public class PanelBosque extends JPanel {
+public class PanelOceano extends JPanel {
 
     // ZONA DE ATRIBUTOS
     //Pez pez = new Pez(10,10,this);
@@ -27,17 +27,17 @@ public class PanelBosque extends JPanel {
     private final List<Choke> mischokes = new ArrayList<Choke>();
 
     // ZONA DE CONSTRUCTORES
-    public PanelBosque() {
+    public PanelOceano() {
 
         this.setBounds(0, 0, 500, 500);    // TAMAÑO DEL PANEL
 
-        for (int i = 0; i < 20; i++) {          // LE AÑADIMO 20 PEZCES
+        for (int i = 0; i < 50; i++) {          // LE AÑADIMO 20 PEZCES
             Pez mipez = new Pez(this);  // CREAMOS UN PEZ CON DATOS ALEATORIOS
             new Thread(mipez).start();  // ARRANCAMOS EL PEZ
             mipezera.add(mipez);        // LO AÑADIMOS A LA PEZERA DE NORMALES
         }
 
-        for (int i = 0; i < 10; i++) {         // LE AÑADIMOS 10 TIBURONES
+        for (int i = 0; i < 10; i++) {         // LE AÑADIMOS 5 TIBURONES
             Boqueron mitibuboqueron = new Boqueron(this);
             new Thread(mitibuboqueron).start(); // ARRANCAMOS EL TIBUBOQUERON
             mipezerab.add(mitibuboqueron);      // LO AÑADIMOS A LA PEZERA DE TIBUBOQUERONES
@@ -45,8 +45,8 @@ public class PanelBosque extends JPanel {
 
         for (int i = 0; i < 50; i++) {         // LE AÑADIMOS 50 BURBUJAS
             Burbuja miburbuja = new Burbuja(this);
-            new Thread(miburbuja).start(); // ARRANCAMOS EL TIBUBOQUERON
-            mipezerabb.add(miburbuja);      // LO AÑADIMOS A LA PEZERA DE TIBUBOQUERONES
+            new Thread(miburbuja).start(); // ARRANCAMOS LA BURBUJA
+            mipezerabb.add(miburbuja);      // LO AÑADIMOS A LA PEZERA DE BURBUJAS
         }
 
     }
@@ -104,7 +104,6 @@ public class PanelBosque extends JPanel {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
         // imagen, horizontal, vertical, paneldondesepintara
         g.drawImage(img, 210, 260, this);
 
@@ -113,11 +112,18 @@ public class PanelBosque extends JPanel {
         ArrayList<Pez> pecesmuertos = new ArrayList();
         for (Pez pez : mipezera) {
             for (Boqueron tiburon : mipezerab) {
-                if (pez.getEstado().equalsIgnoreCase(tiburon.getEstado())) {
+                //System.out.println(tiburon.calcularDistanciaDesde(pez));
+                if (tiburon.calcularDistanciaDesde(pez)<tiburon.getRadio()+5) { // EL RADIO DEL TIBURON Y 5 DEL PEZ
                     System.out.println("HA CHOCADO UN TIBUBOQUERON CON UN PEZ!!");
                     pecesmuertos.add(pez);
-
                 }
+            }
+        }
+        
+        // ELIMINAR LOS MUERTOS
+        for (Pez muerto : pecesmuertos) {
+            if (mipezera.remove(muerto)) {
+                System.out.println("HA MUERTO UN PECECITO >:(");
             }
         }
 
@@ -135,18 +141,14 @@ public class PanelBosque extends JPanel {
             }
         }
         
-        for (int i=0;i<contador;i++) {
+        // CREAR LOS NUEVOS PECES PROCREADOS
+        for (int i=0;i<contador;i++) {  // POR CADA CONTACTO MACHO HEMBRA
             Pez mipez = new Pez(this);  // CREAMOS UN PEZ CON DATOS ALEATORIOS
             new Thread(mipez).start();  // ARRANCAMOS EL PEZ
             mipezera.add(mipez);        // LO AÑADIMOS A LA PECERA
         }
-        // ELIMINAR LOS MUERTOS
-        for (Pez muerto : pecesmuertos) {
-            if (mipezera.remove(muerto)) {
-                System.out.println("HA MUERTO UN PECECITO >:(");
-            }
-        }
-
+        
+       
     }
 
 }

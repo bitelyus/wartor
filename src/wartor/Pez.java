@@ -15,62 +15,35 @@ public class Pez implements Runnable {
     private int y;          // posición y 
     private int velocidad;  // velocidad en milisegundos
     private int sexo;       // 0 - HEMBRA   1 - MACHO
-    PanelBosque pb;         // panel bosque
+    PanelOceano pb;         // panel bosque
     private int tamaño;     // el radio de la circunferencia que representa el pez
-    private double radio;
-    private double xcentro;
-    private double ycentro;
-
-    public double getXcentro() {
-        return xcentro;
-    }
-
-    public void setXcentro(double xcentro) {
-        this.xcentro = xcentro;
-    }
-
-    public double getYcentro() {
-        return ycentro;
-    }
-
-    public void setYcentro(double ycentro) {
-        this.ycentro = ycentro;
-    }
+   
     
-    public Pez(PanelBosque pb) {
+    public Pez(PanelOceano pb) {
         this.x = Utils.rndm(0,500);
         this.y = Utils.rndm(0,500);
         this.velocidad=Utils.rndm(5,25);
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
         this.tamaño=5;
-        this.radio=5.5;
-        this.xcentro=(double)this.getX();
-        this.ycentro=(double)this.getY();
     }
 
-    public Pez(int x, int y, int v, PanelBosque pb) {
+    public Pez(int x, int y, int v, PanelOceano pb) {
         this.x = x;
         this.y = y;
         this.velocidad = v;
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
         this.tamaño=5;
-        this.radio=5.5;
-        this.xcentro=(double)this.getX();
-        this.ycentro=(double)this.getY();
     }
     
-    public Pez(int x, int y, int v, int sexo, PanelBosque pb) {
+    public Pez(int x, int y, int v, int sexo, PanelOceano pb) {
         this.x = x;
         this.y = y;
         this.velocidad = v;
         this.sexo = sexo;
         this.pb = pb;
         this.tamaño=5;
-        this.radio=5.5;
-        this.xcentro=(double)this.getX();
-        this.ycentro=(double)this.getY();
     }
 
     // Getters & Setters
@@ -138,14 +111,6 @@ public class Pez implements Runnable {
         return this.getX()+""+this.getY();
     }
 
-    public double getRadio() {
-        return radio;
-    }
-
-    public void setRadio(double radio) {
-        this.radio = radio;
-    }
-    
-    
+  
 
 }

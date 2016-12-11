@@ -14,13 +14,13 @@ public class Burbuja implements Runnable {
     private int x;          // posición x
     private int y;          // posición y 
     private int velocidad;  // velocidad en milisegundos
-    PanelBosque pb;         // panel bosque
+    PanelOceano pb;         // panel bosque
     private double radio;
     private double xcentro;
     private double ycentro;
 
     
-    public Burbuja(PanelBosque pb) {
+    public Burbuja(PanelOceano pb) {
         this.x = Utils.rndm(0,500);
         this.y = Utils.rndm(0,500);
         this.velocidad=Utils.rndm(5,25);

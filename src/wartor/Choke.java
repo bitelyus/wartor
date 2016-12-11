@@ -21,10 +21,10 @@ public class Choke extends TimerTask implements Runnable {
     private int x;
     private int y;
     
-    private PanelBosque pb;
+    private PanelOceano pb;
     private int tiempodevida=0;
     
-    public Choke(int x, int y, PanelBosque pb) {
+    public Choke(int x, int y, PanelOceano pb) {
         this.x=x;
         this.y=y;
         this.pb = pb;
@@ -44,11 +44,11 @@ public class Choke extends TimerTask implements Runnable {
         }
     }
 
-    public PanelBosque getPb() {
+    public PanelOceano getPb() {
         return pb;
     }
 
-    public void setPb(PanelBosque pb) {
+    public void setPb(PanelOceano pb) {
         this.pb = pb;
     }
 

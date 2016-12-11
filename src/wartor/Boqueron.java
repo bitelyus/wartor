@@ -15,31 +15,60 @@ public class Boqueron implements Runnable {
     private int y;          // POSICIÓN Y EN EL MAPA
     private int velocidad;  // FRECUENCIA DEL SLEEP
     int sexo;               // 0 - HEMBRA   1 - MACHO
-    PanelBosque pb;         // UN PANEL BOSQUE
+    PanelOceano pb;         // UN PANEL BOSQUE
+    private double radio;
+    private double xcentro;
+    private double ycentro;
 
-    public Boqueron (PanelBosque pb) {
+    public double getXcentro() {
+        return xcentro;
+    }
+
+    public void setXcentro(double xcentro) {
+        this.xcentro = xcentro;
+    }
+
+    public double getYcentro() {
+        return ycentro;
+    }
+
+    public void setYcentro(double ycentro) {
+        this.ycentro = ycentro;
+    }
+    
+    public Boqueron (PanelOceano pb) {
         this.x = Utils.rndm(0,450);
         this.y = Utils.rndm(0,450);
         this.velocidad = Utils.rndm(10,20);
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
+        this.radio=10;
+        this.xcentro=(double)this.getX(); // MAS DIEZ PARA MOVER LA POSICION DEL CENTRO MAS A LA BOCA DEL TIBURON
+        this.ycentro=(double)this.getY();
+ 
     }
     
-    public Boqueron(int x, int y, int v, int sexo, PanelBosque pb) {
+    public Boqueron(int x, int y, int v, int sexo, PanelOceano pb) {
         this.x = x;
         this.y = y;
         this.velocidad = v;
         this.sexo = sexo;
         this.pb = pb;
-    }
+        this.radio=5;
+        this.xcentro=(double)this.getX();
+        this.ycentro=(double)this.getY();
+     }
 
-    public Boqueron(int x, int y, int v, PanelBosque pb) {
+    public Boqueron(int x, int y, int v, PanelOceano pb) {
         this.x = x;
         this.y = y;
         this.velocidad = v;
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
-    }
+        this.radio=5;
+        this.xcentro=(double)this.getX();
+        this.ycentro=(double)this.getY();
+     }
     
     public int getX() {
         return x;
@@ -55,6 +84,14 @@ public class Boqueron implements Runnable {
 
     public void setY(int y) {
         this.y = y;
+    }
+    
+    public double getRadio() {
+        return radio;
+    }
+
+    public void setRadio(double radio) {
+        this.radio = radio;
     }
     
     @Override
@@ -94,5 +131,13 @@ public class Boqueron implements Runnable {
     
     public String getEstado() {
         return this.getX()+""+this.getY();
-    }    
+    }
+    
+    public double calcularDistanciaDesde(Pez pez) {
+        double cateto1 = this.getXcentro() - pez.getX();
+        double cateto2 = this.getYcentro() - pez.getY();
+        double hipotenusa = Math.sqrt(cateto1*cateto1 + cateto2*cateto2);
+        return hipotenusa;
+    }
+    
 }
