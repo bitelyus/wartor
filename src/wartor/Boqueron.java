@@ -43,8 +43,8 @@ public class Boqueron implements Runnable {
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
         this.radio=10;
-        this.xcentro=(double)this.getX(); 
-        this.ycentro=(double)this.getY();
+        this.xcentro=(double)this.x; 
+        this.ycentro=(double)this.y;
     }
     
     public Boqueron(int x, int y, int v, int sexo, PanelOceano pb) {
@@ -54,8 +54,8 @@ public class Boqueron implements Runnable {
         this.sexo = sexo;
         this.pb = pb;
         this.radio=5;
-        this.xcentro=(double)this.getX();
-        this.ycentro=(double)this.getY();
+        this.xcentro=(double)this.x;
+        this.ycentro=(double)this.y;
      }
 
     public Boqueron(int x, int y, int v, PanelOceano pb) {
@@ -65,8 +65,8 @@ public class Boqueron implements Runnable {
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
         this.radio=5;
-        this.xcentro=(double)this.getX();
-        this.ycentro=(double)this.getY();
+        this.xcentro=(double)this.x;
+        this.ycentro=(double)this.y;
      }
     
     public int getX() {
@@ -100,22 +100,24 @@ public class Boqueron implements Runnable {
             movimiento=Utils.rndm(0,4);
             switch (movimiento) {
                 case 0:
-                    if (x<0) { x=450; } else { x=(x+1)%450; }
+                    if (x<0) { x=450; } else { x=(x+1)%450; xcentro=(double)(xcentro+1)%450; }
                     break;
                 case 1:
-                    if (x<0) { x=450; } else { x=(x+1)%450; }
-                    if (y<0) { y=450; } else { y=(y-1)%450; }
+                    if (x<0) { x=450; } else { x=(x+1)%450; xcentro=(double)(xcentro+1)%450;  }
+                    if (y<0) { y=450; } else { y=(y-1)%450; ycentro=(double)(ycentro-1)%450;  }
                     break;
                 case 2:
-                    if (y<0) { y=450; } else { y=(y-1)%450; }
+                    if (y<0) { y=450; } else { y=(y-1)%450;  ycentro=(double)(ycentro-1)%450; }
                     //y=(y-1)%450;
                     break;
                 case 3:
-                    if (y<0) { y=450; } else { y=(y-1)%450; }
+                    if (y<0) { y=450; } else { y=(y-1)%450; ycentro=(double)(ycentro-1)%450;  }
                     x=(x+1)%450;
+                    xcentro=(double)(xcentro+1)%450;
                     break;
                 case 4:
                     x=(x+2)%450;
+                    xcentro=(double)(xcentro+2)%450;
                     break;
             }
             //System.out.println(this.getY());
@@ -133,8 +135,8 @@ public class Boqueron implements Runnable {
     }
     
     public double calcularDistanciaDesde(Pez pez) {
-        double cateto1 =  pez.getX() - this.getXcentro();
-        double cateto2 =  pez.getY() - this.getYcentro();
+        double cateto1 =  pez.getX() - this.getX()+25;
+        double cateto2 =  pez.getY() - this.getY();
         double hipotenusa = Math.sqrt(cateto1*cateto1 + cateto2*cateto2);
         return hipotenusa;
     }
