@@ -116,7 +116,7 @@ public class PanelOceano extends JPanel {
         ArrayList<Pez> pecesmuertos = new ArrayList();
         for (Boqueron tiburon : mipezerab) {
             for (Pez pez : mipezera) {
-                System.out.println(tiburon.calcularDistanciaDesde(pez));
+                //System.out.println(tiburon.calcularDistanciaDesde(pez));
                 if (tiburon.calcularDistanciaDesde(pez)<tiburon.getRadio()+5) { // EL RADIO DEL TIBURON Y 5 DEL PEZ
                     System.out.println("HA CHOCADO UN TIBUBOQUERON CON UN PEZ!!");
                     pecesmuertos.add(pez);
