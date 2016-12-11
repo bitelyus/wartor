@@ -133,8 +133,8 @@ public class Boqueron implements Runnable {
     }
     
     public double calcularDistanciaDesde(Pez pez) {
-        double cateto1 = this.getXcentro() - pez.getX();
-        double cateto2 = this.getYcentro() - pez.getY();
+        double cateto1 =  pez.getX() - this.getXcentro();
+        double cateto2 =  pez.getY() - this.getYcentro();
         double hipotenusa = Math.sqrt(cateto1*cateto1 + cateto2*cateto2);
         return hipotenusa;
     }

@@ -12,6 +12,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,16 +29,18 @@ public class PanelOceano extends JPanel {
 
     // ZONA DE CONSTRUCTORES
     public PanelOceano() {
-
+        
+        int peces = Integer.parseInt(JOptionPane.showInputDialog("Número de peces:"));
+        int tiburones = Integer.parseInt(JOptionPane.showInputDialog("Número de tiburones:"));
         this.setBounds(0, 0, 500, 500); // TAMAÑO DEL PANEL
 
-        for (int i = 0; i < 40; i++) {  // LE AÑADIMOS UN PUÑADO DE PECES
+        for (int i = 0; i < peces; i++) {  // LE AÑADIMOS UN PUÑADO DE PECES
             Pez mipez = new Pez(this);  // CREAMOS UN PEZ CON DATOS ALEATORIOS
             new Thread(mipez).start();  // ARRANCAMOS EL PEZ
             mipezera.add(mipez);        // LO AÑADIMOS A LA PEZERA DE NORMALES
         }
 
-        for (int i = 0; i < 8; i++) {         // LE AÑADIMOS OTRO TANTO DE TIBURONES
+        for (int i = 0; i < tiburones; i++) {         // LE AÑADIMOS OTRO TANTO DE TIBURONES
             Boqueron mitibuboqueron = new Boqueron(this);
             new Thread(mitibuboqueron).start(); // ARRANCAMOS EL TIBUBOQUERON
             mipezerab.add(mitibuboqueron);      // LO AÑADIMOS A LA PEZERA DE TIBUBOQUERONES
@@ -152,7 +155,5 @@ public class PanelOceano extends JPanel {
         g.setColor(Color.red);
         g.setFont(new Font("SansSerif",Font.BOLD, 15));
         g.drawString("PECES: " + mipezera.size(), 10,470);
-       
     }
-
 }
