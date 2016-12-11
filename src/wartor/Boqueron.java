@@ -13,7 +13,7 @@ public class Boqueron implements Runnable {
 
     private int x;          // POSICIÓN X EN EL MAPA
     private int y;          // POSICIÓN Y EN EL MAPA
-    private int velocidad;  // FRECUENCIA DEL SLEEP
+    final private int velocidad;  // FRECUENCIA DEL SLEEP
     int sexo;               // 0 - HEMBRA   1 - MACHO
     PanelOceano pb;         // UN PANEL BOSQUE
     private double radio;
@@ -43,9 +43,8 @@ public class Boqueron implements Runnable {
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
         this.radio=10;
-        this.xcentro=(double)this.getX(); // MAS DIEZ PARA MOVER LA POSICION DEL CENTRO MAS A LA BOCA DEL TIBURON
+        this.xcentro=(double)this.getX(); 
         this.ycentro=(double)this.getY();
- 
     }
     
     public Boqueron(int x, int y, int v, int sexo, PanelOceano pb) {

@@ -1,6 +1,7 @@
 package wartor;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -108,7 +109,7 @@ public class PanelOceano extends JPanel {
         g.drawImage(img, 210, 260, this);
 
         // COMPROBAR POSICIÓN DE LOS PECES!!. 
-        // SI ESTAN EN LA MISMA X E Y TIBURON Y PEZ > MUERE PECECITO
+        // SI LA DISTANCIA ENTRE TIBURON Y PEZ ES MENOR DE 10 > MUERE PECECITO
         ArrayList<Pez> pecesmuertos = new ArrayList();
         for (Boqueron tiburon : mipezerab) {
             for (Pez pez : mipezera) {
@@ -148,6 +149,9 @@ public class PanelOceano extends JPanel {
             mipezera.add(mipez);        // LO AÑADIMOS A LA PECERA
         }
         
+        g.setColor(Color.red);
+        g.setFont(new Font("SansSerif",Font.BOLD, 15));
+        g.drawString("PECES: " + mipezera.size(), 10,470);
        
     }
 
