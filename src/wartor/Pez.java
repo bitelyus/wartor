@@ -106,7 +106,7 @@ public class Pez implements Runnable {
     public void run() {
         int movimiento = 0;
         while (true) {
-            movimiento=Utils.rndm(0,3);
+            movimiento=Utils.rndm(0,4);
             switch (movimiento) {
                 case 0:
                     x=(x+1)%450;
@@ -121,6 +121,8 @@ public class Pez implements Runnable {
                     x=(x+1)%450;
                     y=(y+1)%450;
                     break;
+                case 4:
+                    x=(x+1)%450;
             }
             
             try {
