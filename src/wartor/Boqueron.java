@@ -34,7 +34,7 @@ public class Boqueron implements Runnable {
         this.velocidad = v;
         this.sexo = sexo;
         this.pb = pb;
-        this.radio=5;
+        this.radio=10;
      }
 
     public Boqueron(int x, int y, int v, PanelOceano pb) {
@@ -43,7 +43,7 @@ public class Boqueron implements Runnable {
         this.velocidad = v;
         this.sexo = Utils.rndm(0,1);
         this.pb = pb;
-        this.radio=5;
+        this.radio=10;
      }
     
     public int getX() {

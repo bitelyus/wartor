@@ -5,12 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import javax.swing.JPanel;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
@@ -30,8 +27,8 @@ public class PanelOceano extends JPanel {
     // ZONA DE CONSTRUCTORES
     public PanelOceano() {
         
-        int peces = Integer.parseInt(JOptionPane.showInputDialog("Número de peces:"));
-        int tiburones = Integer.parseInt(JOptionPane.showInputDialog("Número de tiburones:"));
+        int peces = Integer.parseInt(JOptionPane.showInputDialog("Número de Peces:"));
+        int tiburones = Integer.parseInt(JOptionPane.showInputDialog("Número de Tiburones:"));
         this.setBounds(0, 0, 500, 500); // TAMAÑO DEL PANEL
 
         for (int i = 0; i < peces; i++) {  // LE AÑADIMOS UN PUÑADO DE PECES
@@ -81,13 +78,24 @@ public class PanelOceano extends JPanel {
             g.drawImage(img, b.getX(), b.getY(), this);
         }
 
-        try {
-            img = ImageIO.read(new File("pez.png"));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+       
 
         for (Pez mipez : mipezera) {
+            switch (mipez.getSexo()) {
+                case 0:
+                    try {
+                        img = ImageIO.read(new File("pezh.png"));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
+                case 1:
+                    try {
+                        img = ImageIO.read(new File("pez.png"));
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+            }
             g.drawImage(img, mipez.getX(), mipez.getY(), this);
             //System.out.println("SEXO: "+mipez.getSexo());
         }
