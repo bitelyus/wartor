@@ -56,7 +56,7 @@ public class PanelOceano extends JPanel {
      * Sobreescritura del Método paint que se ejecuta cada vez que se pinta la
      * pantalla
      *
-     * @param g Graphics
+     * @param g Graphics El gráfico que vamos a pintar
      */
     @Override // cando hay un paint, se ejecuta siempre antes que cualquier otra cosa
     public void paint(Graphics g) {
